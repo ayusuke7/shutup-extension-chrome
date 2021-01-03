@@ -1,4 +1,5 @@
 const blacklist = [];
+let interval = null;
 
 document.body.onload = function () {
   chrome.storage.sync.get(["data"], function (result) {
@@ -10,7 +11,7 @@ document.body.onload = function () {
 
       blacklist.push(...data);
 
-      setInterval(removeDiv, 2000);
+      interval = setInterval(removeDiv, 2000);
     }
   });
 };
@@ -25,14 +26,20 @@ function removeDiv() {
       const post = posts[i];
       const words = [];
 
-      post.querySelectorAll("span").forEach((s) => {
-        const tmp = s.innerText.split(" ");
-        words.push(...tmp);
-      });
+      if (post.style.display !== "none") {
+        post.querySelectorAll("span").forEach((s) => {
+          const tmp = s.innerText.split(" ");
+          words.push(...tmp);
+        });
 
-      if (words.some((e) => blacklist.includes(e.toLowerCase()))) {
-        console.log("div removida");
-        post.style = "display: none;";
+        const includes = words.filter((e) =>
+          blacklist.includes(e.toLowerCase())
+        );
+
+        if (includes.length > 0) {
+          console.log("div removida por =>", includes);
+          post.style.display = "none";
+        }
       }
     }
   }

@@ -18,6 +18,8 @@ button.addEventListener("click", function () {
         console.log("Runtime error.");
       }
     });
+  } else {
+    chrome.storage.sync.clear();
   }
 
   window.close();
