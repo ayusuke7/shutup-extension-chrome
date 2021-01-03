@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "ShutUp",
-  "description": "Extension for hide tags and words",
+  "name": "ShutUp Twitter",
+  "description": "Extension for hide posts based and words by Twitter",
   "version": "0.0.1",
   "content_scripts": [
     {

@@ -10,15 +10,13 @@ document.body.onload = function () {
 
       blacklist.push(...data);
 
-      setTimeout(removeDiv, 5000);
+      setInterval(removeDiv, 2000);
     }
   });
 };
 
 function removeDiv() {
   const timeline = document.querySelector("section > .css-1dbjc4n");
-
-  console.log(blacklist);
 
   if (timeline) {
     const posts = timeline.firstChild.children;
